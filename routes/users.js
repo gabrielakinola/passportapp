@@ -10,7 +10,9 @@ router.get("/login", (req, res) => res.render("login"));
 router.get("/register", (req, res) => res.render("register"));
 
 router.post("/register", (req, res) => {
+  console.log(req.body);
   const { name, email, password, password2 } = req.body;
+  console.log(email);
   let errors = [];
 
   //Check required fiels
@@ -21,8 +23,9 @@ router.post("/register", (req, res) => {
   if (password !== password2) {
     errors.push({ msg: "Passwords do not match" });
   }
-  //Check pass length
+
   if (password.length < 6) {
+    //Check pass length
     errors.push({ msg: "Passwords should be at least 6 characters" });
   }
   if (errors.length > 0) {
